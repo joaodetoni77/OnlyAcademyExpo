@@ -19,68 +19,44 @@ const styles = StyleSheet.create({
   },
 });
 */
-import { CameraView, useCameraPermissions } from 'expo-camera';
-import { useState } from 'react';
-import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-export default function App() {
-  const [facing, setFacing] = useState('back');
-  const [permission, requestPermission] = useCameraPermissions();
+import { useReducer, useEffect, useMemo, createContext, Dispatch } from 'react';
 
-  if (!permission) {
-    // Camera permissions are still loading.
-    return <View />;
-  }
+import { PaperProvider } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-  if (!permission.granted) {
-    // Camera permissions are not granted yet.
-    return (
-      <View style={styles.container}>
-        <Text style={{ textAlign: 'center' }}>Você precisa de permissão para acessar a câmera!</Text>
-        <Button onPress={requestPermission} title="Fornecer Permissão" />
-      </View>
-    );
-  }
 
-  function toggleCameraFacing() {
-    setFacing(current => (current === 'back' ? 'front' : 'back'));
-  }
+import { Camera } from './src/pages/camera';
 
-  return (
-    <View style={styles.container}>
-      <CameraView style={styles.camera} facing={facing}>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
-            <Text style={styles.text}>Icone</Text>
-          </TouchableOpacity>
-        </View>
-      </CameraView>
-    </View>
-  );
+import { State } from 'react-native-paper/lib/typescript/components/TextInput/types';
+// import { state, dispatch } from './src/config/Authentication';
+// import { authContext, AuthContext } from './src/config/Authentication';
+
+export const AuthContext = createContext({});
+
+
+export type RootStack = {
+  Camera: undefined;
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  camera: {
-    flex: 1,
-  },
-  buttonContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: 'transparent',
-    margin: 64,
-  },
-  button: {
-    flex: 1,
-    alignSelf: 'flex-end',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'black',
-  },
-});
+const Stack = createNativeStackNavigator<RootStack>();
+
+export default function App() {
+  return (
+    <PaperProvider>
+      <AuthContext.Provider value={AuthContext}>
+            (
+              <>
+                <Stack.Screen
+                  name='Camera'
+                  component={ Camera }
+                  options={{ title: 'OnlyAcademy' }}
+                />
+              </>
+            )
+      </AuthContext.Provider>
+    </PaperProvider>
+  );
+}
