@@ -2,8 +2,7 @@ import { CameraCapturedPicture, CameraView, useCameraPermissions } from 'expo-ca
 import { useState } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-//export default function App() {
-export const Camera = (props: CameraCapturedPicture) => {
+export default function Camera() {
     const [facing, setFacing] = useState('back');
     const [permission, requestPermission] = useCameraPermissions();
 
@@ -31,7 +30,7 @@ export const Camera = (props: CameraCapturedPicture) => {
             <CameraView style={styles.camera} facing={facing}>
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
-                        <Text style={styles.text}>Icone</Text>
+                        <Text style={styles.text}>Tirar Foto</Text>
                     </TouchableOpacity>
                 </View>
             </CameraView>
