@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Button, StyleSheet, TouchableOpacity, Text, Image, ScrollView, ImageBackground } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { getLeftStyles } from "react-native-paper/lib/typescript/components/List/utils";
 
 export default function Home() {
     const navigation = useNavigation();
@@ -15,10 +16,8 @@ export default function Home() {
     };
 
     return (
-        <ImageBackground
-            source={require("./assets/fundo_usuario.jpg")}
-        >
-            <Image source={require("./assets/joao_vitor_detoni.jpg")} style={styles.foto} />
+        <ImageBackground source={require("./assets/fundo_usuario.jpg")}>
+            <Image source={require("./assets/joao_vitor_detoni.jpg")} style={styles.fotoPerfil} />
             <View>
                 <Text style={styles.nomeUsuario}>@joao_vitor_detoni</Text>
                 <Text style={styles.descricaoUsuario}>
@@ -47,6 +46,23 @@ export default function Home() {
                         <Text style={styles.botaoTexto}>Camera</Text>
                     </TouchableOpacity>
                 </View>
+            </View>
+
+            <View>
+                <View style={styles.botaoPadronizado}>
+                    <TouchableOpacity style={[styles.guiasHome, { marginRight: 20 }]}>
+                        <Text style={styles.botaoTexto}>All</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={[styles.guiasHome, { marginRight: 20 }]}>
+                        <Text style={styles.botaoTexto}>Fotos</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={[styles.guiasHome, { marginRight: 20 }]}>
+                        <Text style={styles.botaoTexto}>Vídeos</Text>
+                    </TouchableOpacity>
+                </View>
+
             </View>
         </ImageBackground>
     );
@@ -83,7 +99,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         padding: 10,
     },
-    foto: {
+    fotoPerfil: {
         width: 100,
         height: 100,
         borderRadius: 100,
@@ -103,5 +119,28 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         marginTop: 12,
         fontSize: 14,
-    }
+    },
+    fotoMergulhoHome: {
+        width: 200,
+        height: 200,
+        borderStyle: "solid",
+        textAlign: "left",
+        marginTop: 5,
+    },
+    fotoMontagemHome: {
+        width: 50,
+        height: 50,
+        textAlign: "right",
+        marginTop: 5,
+    },
+    fotoPaisagemHome: {
+        width: 50,
+        height: 50,
+        textAlign: "right",
+        marginTop: 5,
+    },
+    guiasHome: {
+        paddingVertical: 5,
+        paddingHorizontal: 5,
+    },
 });
