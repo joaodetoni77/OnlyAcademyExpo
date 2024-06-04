@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Button, StyleSheet, TouchableOpacity, Text, Image, ScrollView, ImageBackground } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { getLeftStyles } from "react-native-paper/lib/typescript/components/List/utils";
 
 export default function Home() {
     const navigation = useNavigation();
@@ -10,15 +11,17 @@ export default function Home() {
         setFollowActive(!isFollowActive);
     };
 
-    const navigateToCamera = () => {
+    const navigationCamera = () => {
         navigation.navigate("Camera");
     };
 
+    const navigationEscolhaPlano = () => {
+        navigation.navigate("Escolha o Plano");
+    };
+
     return (
-        <ImageBackground
-            source={require("./assets/fundo_usuario.jpg")}
-        >
-            <Image source={require("./assets/joao_vitor_detoni.jpg")} style={styles.foto} />
+        <ImageBackground source={require("./assets/fundo_usuario.jpg")}>
+            <Image source={require("./assets/joao_vitor_detoni.jpg")} style={styles.fotoPerfil} />
             <View>
                 <Text style={styles.nomeUsuario}>@joao_vitor_detoni</Text>
                 <Text style={styles.descricaoUsuario}>
@@ -32,7 +35,7 @@ export default function Home() {
                         style={[
                             styles.botao,
                             isFollowActive ? styles.botaoSeguir : styles.botaoSeguindo,
-                            { marginRight: 20 }
+                            { marginRight: 10 }
                         ]}
                     >
                         <Text style={styles.botaoTexto}>
@@ -41,10 +44,33 @@ export default function Home() {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        onPress={navigateToCamera}
-                        style={[styles.botao,]}
+                        onPress={navigationCamera}
+                        style={[styles.botao, { marginRight: 10 }]}
                     >
                         <Text style={styles.botaoTexto}>Camera</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={navigationEscolhaPlano}
+                        style={[styles.botao,]}
+                    >
+                        <Text style={styles.botaoTexto}>Plano</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+
+            <View>
+                <View style={styles.botaoPadronizado}>
+                    <TouchableOpacity style={[styles.guiasHome, { marginRight: 20 }]}>
+                        <Text style={styles.botaoTexto}>All</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={[styles.guiasHome, { marginRight: 20 }]}>
+                        <Text style={styles.botaoTexto}>Fotos</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={[styles.guiasHome, { marginRight: 20 }]}>
+                        <Text style={styles.botaoTexto}>Vídeos</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -83,7 +109,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         padding: 10,
     },
-    foto: {
+    fotoPerfil: {
         width: 100,
         height: 100,
         borderRadius: 100,
@@ -103,5 +129,9 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         marginTop: 12,
         fontSize: 14,
+    },
+    guiasHome: {
+        paddingVertical: 5,
+        paddingHorizontal: 5,
     }
 });
