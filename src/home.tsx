@@ -11,8 +11,12 @@ export default function Home() {
         setFollowActive(!isFollowActive);
     };
 
-    const navigateToCamera = () => {
+    const navigationCamera = () => {
         navigation.navigate("Camera");
+    };
+
+    const navigationEscolhaPlano = () => {
+        navigation.navigate("Escolha o Plano");
     };
 
     return (
@@ -31,7 +35,7 @@ export default function Home() {
                         style={[
                             styles.botao,
                             isFollowActive ? styles.botaoSeguir : styles.botaoSeguindo,
-                            { marginRight: 20 }
+                            { marginRight: 10 }
                         ]}
                     >
                         <Text style={styles.botaoTexto}>
@@ -40,10 +44,17 @@ export default function Home() {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        onPress={navigateToCamera}
-                        style={[styles.botao,]}
+                        onPress={navigationCamera}
+                        style={[styles.botao, { marginRight: 10 }]}
                     >
                         <Text style={styles.botaoTexto}>Camera</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={navigationEscolhaPlano}
+                        style={[styles.botao,]}
+                    >
+                        <Text style={styles.botaoTexto}>Plano</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -62,7 +73,6 @@ export default function Home() {
                         <Text style={styles.botaoTexto}>Vídeos</Text>
                     </TouchableOpacity>
                 </View>
-
             </View>
         </ImageBackground>
     );
@@ -120,27 +130,8 @@ const styles = StyleSheet.create({
         marginTop: 12,
         fontSize: 14,
     },
-    fotoMergulhoHome: {
-        width: 200,
-        height: 200,
-        borderStyle: "solid",
-        textAlign: "left",
-        marginTop: 5,
-    },
-    fotoMontagemHome: {
-        width: 50,
-        height: 50,
-        textAlign: "right",
-        marginTop: 5,
-    },
-    fotoPaisagemHome: {
-        width: 50,
-        height: 50,
-        textAlign: "right",
-        marginTop: 5,
-    },
     guiasHome: {
         paddingVertical: 5,
         paddingHorizontal: 5,
-    },
+    }
 });

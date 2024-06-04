@@ -5,6 +5,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import Home from "./src/home";
 import Camera from "./src/camera";
+import PagamentoMensal from "./src/pagamentoMensal";
+import PagamentoAnual from "./src/pagamentoAnual";
+import escolhaPlano from "./src/escolhaPlano";
 
 const Stack = createStackNavigator();
 
@@ -16,6 +19,9 @@ const App = () => {
           <Stack.Navigator initialRouteName="Home">
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Camera" component={Camera} />
+            <Stack.Screen name="Pagamento Mensal" component={PagamentoMensal} />
+            <Stack.Screen name="Pagamento Anual" component={PagamentoAnual} />
+            <Stack.Screen name="Escolha o Plano" component={escolhaPlano} />
           </Stack.Navigator>
         </View>
       </View>
