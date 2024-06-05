@@ -1,14 +1,10 @@
 import React from "react";
 import { View, Button, StyleSheet, TouchableOpacity, Text, TextInput, Image, ScrollView, ImageBackground } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import axios from 'axios';
 
 export default function PagamentoAnual() {
     const navigation = useNavigation();
-
-    const navigationHome = () => {
-        alert("Pagamento Anual realizado com Sucesso!");
-        navigation.navigate("Home");
-    };
 
     return (
         <ImageBackground
