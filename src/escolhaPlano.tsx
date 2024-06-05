@@ -16,46 +16,24 @@ export default function escolhaPlano() {
         navigation.navigate("Pagamento Anual");
     };
 
-    const [checkoutUrl, setCheckoutUrl] = React.useState(null);
-
-    const createCheckoutSession = async (planoId) => {
-        try {
-            const response = await axios.post('http://localhost:3000/create-checkout-session', {
-                planoId: planoId,
-            });
-            const { sessionId } = response.data;
-            // Redirecionar para a tela de pagamento do Stripe
-            // Aqui você precisaria usar alguma biblioteca de navegação, como react-navigation
-            // Por simplicidade, estou apenas imprimindo o ID da sessão
-            console.log(sessionId);
-        } catch (error) {
-            console.error('Error creating checkout session:', error);
-        }
-    };
 
     return (
         <ImageBackground source={require("./assets/fundo_usuario.jpg")}>
             <View style={styles.container}>
-                {checkoutUrl ? (
-                    <WebView source={{ uri: checkoutUrl }} />
-                ) : (
-                    <>
-                        <Text style={styles.titulo}>Escolha a Categoria de Plano Desejada</Text>
-                        <TouchableOpacity style={[styles.botao, { marginRight: 10 }]}>
-                            <Text style={styles.botaoTexto}>FREE</Text>
-                        </TouchableOpacity>
-                        <br></br>
-                        <TouchableOpacity onPress={navigationPagamentoMensal} style={[styles.botao, { marginRight: 10 }]}>
-                            <Text style={styles.botaoTexto}>PREMIUM MENSAL</Text>
-                        </TouchableOpacity>
-                        <br></br>
-                        <TouchableOpacity onPress={navigationPagamentoAnual} style={[styles.botao, { marginRight: 10 }]}>
-                            <Text style={styles.botaoTexto}>PREMIUM ANUAL</Text>
-                        </TouchableOpacity>
-                    </>
-                )}
+                <Text style={styles.titulo}>Escolha a Categoria de Plano Desejada</Text>
+                <TouchableOpacity style={[styles.botao, { marginRight: 10 }]}>
+                    <Text style={styles.botaoTexto}>FREE</Text>
+                </TouchableOpacity>
+                <br></br>
+                <TouchableOpacity onPress={navigationPagamentoMensal} style={[styles.botao, { marginRight: 10 }]}>
+                    <Text style={styles.botaoTexto}>PREMIUM MENSAL</Text>
+                </TouchableOpacity>
+                <br></br>
+                <TouchableOpacity onPress={navigationPagamentoAnual} style={[styles.botao, { marginRight: 10 }]}>
+                    <Text style={styles.botaoTexto}>PREMIUM ANUAL</Text>
+                </TouchableOpacity>
             </View>
-        </ImageBackground>
+        </ImageBackground >
     );
 }
 
