@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { View, Button, StyleSheet, TouchableOpacity, Text, TextInput, Image, ScrollView, ImageBackground } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import axios from './config/axios';
-import modalPagamento from './modalPagamento';
+import axios from 'axios';
 
 export default function PagamentoMensal() {
     const [street, setStreet] = useState('');
@@ -23,8 +22,6 @@ export default function PagamentoMensal() {
     const [expYear, setExpYear] = useState('');
     const [cardNumber, setCardNumber] = useState('');
     const [securityCode, setSecurityCode] = useState('');
-
-    const [showModal, setShowModal] = useState(false);
 
     const navigation = useNavigation();
 
@@ -91,7 +88,6 @@ export default function PagamentoMensal() {
             },
         ).then(response => {
             console.log(response.data);
-            setShowModal(true);
         }).catch(error => {
             if (error.response) {
                 console.error('Erro de resposta do servidor:', error.response.data);
