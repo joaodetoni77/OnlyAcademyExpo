@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { View, Button, StyleSheet, TouchableOpacity, Text, TextInput, Image, ScrollView, ImageBackground } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import axios from './config/axios';
+import axios from './axios';
 
 export default function PagamentoAnual() {
+
     const [street, setStreet] = useState('');
     const [number, setNumber] = useState('');
     const [complement, setComplement] = useState('');
