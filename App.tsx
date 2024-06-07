@@ -3,11 +3,11 @@ import { View, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import Home from "./src/home";
-import Camera from "./src/camera";
-import PagamentoMensal from "./src/pagamentoMensal";
-import PagamentoAnual from "./src/pagamentoAnual";
-import escolhaPlano from "./src/escolhaPlano";
+import Home from "./src/Home";
+import Camera from "./src/Camera";
+import PagamentoMensal from "./src/PagamentoMensal";
+import PagamentoAnual from "./src/PagamentoAnual";
+import EscolhaPlano from "./src/EscolhaPlano";
 
 const Stack = createStackNavigator();
 
@@ -21,7 +21,7 @@ const App = () => {
             <Stack.Screen name="Camera" component={Camera} />
             <Stack.Screen name="Pagamento Mensal" component={PagamentoMensal} />
             <Stack.Screen name="Pagamento Anual" component={PagamentoAnual} />
-            <Stack.Screen name="Escolha o Plano" component={escolhaPlano} />
+            <Stack.Screen name="Escolha o Plano" component={EscolhaPlano} />
           </Stack.Navigator>
         </View>
       </View>
