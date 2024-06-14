@@ -33,7 +33,7 @@ export default function PagamentoAnual() {
 
     const handleSubmit = () => {
         const data = {
-            plan: { id: 'PLAN_48D951F4-75DB-4EFF-B2F2-323BA652C2C4' },
+            plan: { id: '' },
             customer: {
                 address: {
                     street: street,
@@ -74,7 +74,7 @@ export default function PagamentoAnual() {
             pro_rata: false,
         };
 
-        const token = "D5F8D25B4E66410F916A32D834E7D0E4";
+        const token = "";
         console.log(data);
 
         axios.post(
