@@ -26,7 +26,7 @@ export default function PagamentoAnual() {
 
     const navigation = useNavigation();
 
-    const navigationHome = () => {
+    const navigationHome = () => {  
         alert("Pagamento Mensal realizado com Sucesso!");
         navigation.navigate("Home");
     };
@@ -74,7 +74,7 @@ export default function PagamentoAnual() {
             pro_rata: false,
         };
 
-        const token = "";
+        const token = "D5F8D25B4E66410F916A32D834E7D0E4";
         console.log(data);
 
         axios.post(

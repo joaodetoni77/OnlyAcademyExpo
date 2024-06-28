@@ -73,7 +73,7 @@ export default function PagamentoMensal() {
             pro_rata: false,
         };
 
-        const token = "";
+        const token = "D5F8D25B4E66410F916A32D834E7D0E4";
         console.log(data);
 
         axios.post(
