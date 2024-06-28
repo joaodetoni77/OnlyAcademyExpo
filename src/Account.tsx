@@ -13,7 +13,7 @@ export default function Account({ session }: { session: Session }) {
     const [last_name, setLastName] = useState('')
     const [bio, setBio] = useState('')
     const [location, setLocation] = useState('')
-const [birthdate, setBirthdate] = useState<string>('')
+    const [birthdate, setBirthdate] = useState<string>('')
     const [profile_picture, setProfilePicture] = useState('')
     const [cover_photo, setCoverPhoto] = useState('')
 

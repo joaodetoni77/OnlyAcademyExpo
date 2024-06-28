@@ -75,6 +75,7 @@ import Account from './src/Account'
 import { View } from 'react-native'
 import { Session } from '@supabase/supabase-js'
 import Posts from "./src/Posts";
+import PostList from './src/PostsList'
 
 export default function App() {
   const [session, setSession] = useState<Session | null>(null)

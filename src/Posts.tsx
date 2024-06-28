@@ -14,8 +14,8 @@ export default function Posts({ session }: { session: Session }) {
     const [number, setNumber] = useState('')
     const [image_url, setImageUrl] = useState('')
     const [video_url, setVideoUrl] = useState('')
-    const [likes, setLikes] = useState('')
-    const [shares, setShares] = useState('')
+    const [likes, setLikes] = useState('0')
+    const [shares, setShares] = useState('0')
 
     useEffect(() => {
         if (session) getPost()
@@ -110,7 +110,7 @@ export default function Posts({ session }: { session: Session }) {
                     </View>
                     <View style={[styles.verticallySpaced, styles.mt10]}>
                         <PostVideoPicture
-                            size={150}
+                            size={0}
                             url={video_url}
                             onUpload={(urlVideo: string) => {
                                 setVideoUrl(urlVideo)
@@ -119,10 +119,10 @@ export default function Posts({ session }: { session: Session }) {
                         />
                     </View>
                     <View style={[styles.verticallySpaced, styles.mt10]}>
-                        <TextInput placeholder="Likes" style={styles.textInput} value={likes || ''} onChangeText={(text) => setLikes(text)} />
+                        <TextInput placeholder="Likes" style={styles.textInput} value={likes || ''} onChangeText={(text) => setLikes(text)} editable={false}/>
                     </View>
                     <View style={[styles.verticallySpaced, styles.mt10]}>
-                        <TextInput placeholder="Compartilhamentos" style={styles.textInput} value={shares || ''} onChangeText={(text) => setShares(text)} />
+                        <TextInput placeholder="Compartilhamentos" style={styles.textInput} value={shares || ''} onChangeText={(text) => setShares(text)} editable={false}/>
                     </View>
                     <View style={[styles.verticallySpaced, styles.mt10]}>
                         <TouchableOpacity
