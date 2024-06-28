@@ -26,14 +26,14 @@ export default function PagamentoAnual() {
 
     const navigation = useNavigation();
 
-    const navigationHome = () => {
+    const navigationHome = () => {  
         alert("Pagamento Mensal realizado com Sucesso!");
         navigation.navigate("Home");
     };
 
     const handleSubmit = () => {
         const data = {
-            plan: { id: 'PLAN_48D951F4-75DB-4EFF-B2F2-323BA652C2C4' },
+            plan: { id: '' },
             customer: {
                 address: {
                     street: street,

@@ -32,7 +32,7 @@ export default function PagamentoMensal() {
 
     const handleSubmit = () => {
         const data = {
-            plan: { id: 'PLAN_48D951F4-75DB-4EFF-B2F2-323BA652C2C4' },
+            plan: { id: '' },
             customer: {
                 address: {
                     street: street,

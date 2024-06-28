@@ -1,4 +1,4 @@
-import React from "react";
+/*import React from "react";
 import { View, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -39,4 +39,59 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default App;*/
+
+/*import { useState, useEffect } from 'react'
+import { supabase } from './src/lib/supabase'
+import Auth from './src/Auth'
+import Account from './src/Account'
+import { View } from 'react-native'
+import { Session } from '@supabase/supabase-js'
+
+export default function App() {
+  const [session, setSession] = useState<Session | null>(null)
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+    })
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+  }, [])
+
+  return (
+    <View>
+      {session && session.user ? <Account key={session.user.id} session={session} /> : <Auth />}
+    </View>
+  )
+}*/
+
+import { useState, useEffect } from 'react'
+import { supabase } from './src/lib/supabase'
+import Auth from './src/Auth'
+import Account from './src/Account'
+import { View } from 'react-native'
+import { Session } from '@supabase/supabase-js'
+import Posts from "./src/Posts";
+
+export default function App() {
+  const [session, setSession] = useState<Session | null>(null)
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+    })
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+  }, [])
+
+  return (
+    <View>
+      {session && session.user ? <Account key={session.user.id} session={session} /> : <Auth />}
+    </View>
+  )
+}

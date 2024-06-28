@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import { useState, useEffect, DialogHTMLAttributes } from 'react'
 import { View, Button, StyleSheet, TouchableOpacity, Text, Image, ScrollView, ImageBackground } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { getLeftStyles } from "react-native-paper/lib/typescript/components/List/utils";
+import { Session } from '@supabase/supabase-js'
 
-export default function Home() {
+export default function Home({ session }: { session: Session }) {
     const navigation = useNavigation();
     const [isFollowActive, setFollowActive] = useState(false);
 
@@ -18,17 +19,20 @@ export default function Home() {
     const navigationEscolhaPlano = () => {
         navigation.navigate("Escolha o Plano");
     };
+    useEffect(() => {
+        if (session) getProfile()
+    }, [session])
 
     return (
-        <ImageBackground source={require("./assets/fundo_usuario.jpg")}>
-            <Image source={require("./assets/joao_vitor_detoni.jpg")} style={styles.fotoPerfil} />
-            <View>
-                <Text style={styles.nomeUsuario}>@joao_vitor_detoni</Text>
-                <Text style={styles.descricaoUsuario}>
-                    Meu nome é João Vitor Detoni. Eu sou Analista de Qualidade de Software e Estudante de Engenharia de Software.
-                </Text>
-            </View>
-            <View style={styles.container}>
+        <ScrollView>
+            <ImageBackground style={styles.fotoFundo} source={require("./assets/fundo_usuario.jpg")}>
+                <Image source={require("./assets/joao_vitor_detoni.jpg")} style={styles.fotoPerfil} />
+                <View>
+                    <Text style={styles.nomeUsuario}>@joao_vitor_detoni</Text>
+                    <Text style={styles.descricaoUsuario}>
+                        Meu nome é João Vitor Detoni. Eu sou Analista de Qualidade de Software e Estudante de Engenharia de Software.
+                    </Text>
+                </View>
                 <View style={styles.botaoPadronizado}>
                     <TouchableOpacity
                         onPress={toggleFollow}
@@ -57,24 +61,24 @@ export default function Home() {
                         <Text style={styles.botaoTexto}>Plano</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
 
-            <View>
-                <View style={styles.botaoPadronizado}>
-                    <TouchableOpacity style={[styles.guiasHome, { marginRight: 20 }]}>
-                        <Text style={styles.botaoTexto}>All</Text>
-                    </TouchableOpacity>
+                <View>
+                    <View style={styles.botaoPadronizado}>
+                        <TouchableOpacity style={[styles.guiasHome, { marginRight: 20 }]}>
+                            <Text style={styles.botaoTexto}>All</Text>
+                        </TouchableOpacity>
 
-                    <TouchableOpacity style={[styles.guiasHome, { marginRight: 20 }]}>
-                        <Text style={styles.botaoTexto}>Fotos</Text>
-                    </TouchableOpacity>
+                        <TouchableOpacity style={[styles.guiasHome, { marginRight: 20 }]}>
+                            <Text style={styles.botaoTexto}>Fotos</Text>
+                        </TouchableOpacity>
 
-                    <TouchableOpacity style={[styles.guiasHome, { marginRight: 20 }]}>
-                        <Text style={styles.botaoTexto}>Vídeos</Text>
-                    </TouchableOpacity>
+                        <TouchableOpacity style={[styles.guiasHome, { marginRight: 20 }]}>
+                            <Text style={styles.botaoTexto}>Vídeos</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
-        </ImageBackground>
+            </ImageBackground>
+        </ScrollView>
     );
 };
 
@@ -83,6 +87,15 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+    },
+    fotoFundo: {
+        width: 450,
+        height: 1000,
+        borderRadius: 100,
+        alignSelf: "center",
+        marginTop: 5,
+        borderColor: "#fff",
+        borderWidth: 5,
     },
     botaoPadronizado: {
         flexDirection: "row",
@@ -95,12 +108,8 @@ const styles = StyleSheet.create({
         borderRadius: 150,
         paddingVertical: 5,
         paddingHorizontal: 5,
-    },
-    botaoSeguir: {
-        backgroundColor: "#0000FF",
-    },
-    botaoSeguindo: {
-        backgroundColor: "#4169E1",
+        marginStart: 10,
+        marginEnd: 10
     },
     botaoTexto: {
         color: "#000",
@@ -108,6 +117,12 @@ const styles = StyleSheet.create({
         fontSize: 16,
         textAlign: "center",
         padding: 10,
+    },
+    botaoSeguir: {
+        backgroundColor: "#0000FF",
+    },
+    botaoSeguindo: {
+        backgroundColor: "#4169E1",
     },
     fotoPerfil: {
         width: 100,
@@ -133,5 +148,7 @@ const styles = StyleSheet.create({
     guiasHome: {
         paddingVertical: 5,
         paddingHorizontal: 5,
+        marginStart: 10,
+        marginEnd: 10
     }
 });
